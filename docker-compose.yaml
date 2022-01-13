@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+#potentially dont need nginx
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - target: 80
+        published: 80
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+
+  frontend:
+    container_name: frontend
+    #ADD image, build, UPDATE ports
+    image: 
+    build: 
+    ports:
+      - target: 5000
+        published: 5000
+    deploy:
+      replicas: 2
+    restart: on-failure
+
+  blackcards:
+    container_name: backend
+    #ADD image, build, UPDATE ports
+    image:
+    build:
+    ports:
+      - target: 5001
+        published: 5001
+    deploy:
+      replicas: 2
+    restart: on-failure
