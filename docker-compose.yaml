@@ -15,7 +15,7 @@ services:
   frontend:
     container_name: frontend
     #ADD image, build, UPDATE ports
-    image: 
+    image: ${TAG}/frontend:latest
     build: 
     ports:
       - target: 5000
@@ -27,7 +27,7 @@ services:
   blackcards:
     container_name: backend
     #ADD image, build, UPDATE ports
-    image:
+    image: ${TAG}/backend:latest
     build:
     ports:
       - target: 5001

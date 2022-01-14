@@ -10,15 +10,19 @@ terraform {
 }
 
 provider "aws" {
-  profile = "default"
-  region  = "us-west-2"
+
+    #aws user for terraform store in ENV's
+    access_key = var.accesskey
+    secret_key = var.secretkey
+    profile = "default"
+    region  = "us-west-2"
 }
 
 resource "aws_instance" "app_server" {
-  ami           = "ami-830c94e3"
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = "ExampleAppServerInstance"
-  }
+    ami           = "ami-830c94e3"
+    instance_type = "t2.micro"
+    
+    tags = {
+        Name = "ExampleAppServerInstance"
+        }
 }
