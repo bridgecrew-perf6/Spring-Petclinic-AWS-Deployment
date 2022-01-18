@@ -24,7 +24,7 @@ services:
       replicas: 2
     restart: on-failure
 
-  blackcards:
+  backend:
     container_name: backend
     #ADD image, build, UPDATE ports
     image: ${TAG}/backend:latest
