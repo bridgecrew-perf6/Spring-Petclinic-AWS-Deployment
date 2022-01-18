@@ -26,7 +26,10 @@ pipeline {
                 sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
                 sh "docker-compose push"
             }
-        }
+        } //(richard) could potentially need removing, along with docker-compose //
+
+
+        //(richard) potentially look at setting up angular and maven in the jenkinsfile so that jenkins can run tests (idk if this is necessary)
 
         stage('Config and deploy') {
             steps {
