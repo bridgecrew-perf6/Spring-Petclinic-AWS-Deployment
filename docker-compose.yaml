@@ -18,11 +18,9 @@ services:
     image: ${TAG}/frontend:latest
     build: 
     ports:
-      - target: 5000
-        published: 5000
-    deploy:
-      replicas: 2
-    restart: on-failure
+      - target: 8080
+        published: 8080
+
 
   backend:
     container_name: backend
@@ -30,8 +28,5 @@ services:
     image: ${TAG}/backend:latest
     build:
     ports:
-      - target: 5001
-        published: 5001
-    deploy:
-      replicas: 2
-    restart: on-failure
+      - target: 9966
+        published: 9966
