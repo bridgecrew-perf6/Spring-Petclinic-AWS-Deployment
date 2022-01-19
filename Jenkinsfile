@@ -33,8 +33,6 @@ pipeline {
 
         }
 
-        //(richard) potentially look at setting up angular and maven in the jenkinsfile so that jenkins can run tests (idk if this is necessary)//
-
         stage('Deploy') {
             steps {
                 sh "docker run --rm -p 8080:8080 spring-pet-clinic-angular:latest"
