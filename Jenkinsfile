@@ -29,18 +29,16 @@ pipeline {
                 sh "npm install --save-dev @angular/cli@latest"
                 sh "npm install"
                 sh "docker build -t spring-pet-clinic-angular:latest"
-                sh "docker run --rm -p 8080:8080 spring-pet-clinic-angular:latest"
-        }
+                sh "cd ~"
 
+        }
 
         //(richard) potentially look at setting up angular and maven in the jenkinsfile so that jenkins can run tests (idk if this is necessary)//
 
-        stage('Config and deploy') {
+        stage('Deploy') {
             steps {
-                sh "scp -o StrictHostKeyChecking=no docker-compose.yaml docker-swarm-manager:/home/jenkins/docker-compose.yaml"
-                sh "scp -o StrictHostKeyChecking=no nginx.conf docker-swarm-manager:/home/jenkins/nginx.conf"
-                sh "ansible-playbook -i ansible/inventory.yaml ansible/playbook.yaml"
-                
+                sh "docker run --rm -p 8080:8080 spring-pet-clinic-angular:latest"
+                sh "docker run -p 9966:9966 springcommunity/spring-petclinic-rest"
                 //Then clean the workspace after deployment ignoring node_modules directory
                 cleanWs notFailBuild: true, patterns: [[pattern: 'node_modules', type: 'EXCLUDE']]
             }
