@@ -1,14 +1,21 @@
 
 #!/bin/bash
 
-echo "Install Docker engine"
-sudo apt-get Install docker.io -y 
-sudo usermod -aG docker $USER
+#Update System
+sudo apt-get update
 
-echo "Install kubectl"
+#Install Curl
+sudo apt install curl -y
+
+#Install Docker engine
+curl https://get.docker.com | sudo bash
+sudo usermod -aG docker $(whoami)
+
+#Install kubectl
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
 chmod +x kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl 
 
-echo "Run backend container"
+#Run backend container
 kubectl create -f backend.yaml
+
