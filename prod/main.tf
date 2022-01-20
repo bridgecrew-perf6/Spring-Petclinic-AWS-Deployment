@@ -19,6 +19,7 @@ module "front-end" {
   instance_type = "t2.micro"
 }
 
+
 module "back-end" {
   source        = "../modules/backend"
   ec2_count     = 1
