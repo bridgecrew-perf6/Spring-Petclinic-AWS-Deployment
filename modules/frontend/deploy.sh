@@ -18,4 +18,4 @@ sudo npm install
 
 echo "Run frontend container"
 docker build -t spring-pet-clinic-angular:latest
-docker run -p 8080:8080 spring-pet-clinic-angular:latest
+kubectl create -f k8s/frontent.yaml
