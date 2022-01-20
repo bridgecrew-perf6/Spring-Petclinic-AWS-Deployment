@@ -18,13 +18,13 @@ resource "aws_instance" "web" {
 
 
   provisioner "file" {
-    source      = "../frontend/deploy.sh"
-    destination = "~/tmp/deploy.sh"
+    source      = "../modules/backend/deploy.sh "
+    destination = "/tmp/deploy.sh"
   }  
   provisioner "remote-exec" {
     inline = [
-      "chmod +x ~/tmp/deploy.sh",
-      "sudo ~/tmp/deploy.sh",
+      "chmod +x /tmp/deploy.sh",
+      "sudo /tmp/deploy.sh",
     ]
   }
 }
