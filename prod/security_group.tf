@@ -1,4 +1,4 @@
-resource "aws_security_group" "sg_ssh" {
+resource "aws_security_group" "sg_sallow_sshsh" {
   name = "allow_ssh"
 
   #Incoming traffic
@@ -18,7 +18,7 @@ resource "aws_security_group" "sg_ssh" {
   }
 }
 
-resource "aws_security_group" "sg_ssh" {
+resource "aws_security_group" "port9966" {
   name = "port9966"
 
   #Incoming traffic
@@ -38,7 +38,7 @@ resource "aws_security_group" "sg_ssh" {
   }
 }
 
-resource "aws_security_group" "sg_ssh" {
+resource "aws_security_group" "port8080" {
   name = "port8080"
 
   #Incoming traffic
