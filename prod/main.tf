@@ -12,6 +12,13 @@ provider "aws" {
   secret_key = var.secretkey
 }
 
+module "back-end" {
+  source        = "../modules/backend"
+  ec2_count     = 1
+  ami_id        = "ami-0fb653ca2d3203ac1"
+  instance_type = "t2.micro"
+}
+
 module "front-end" {
   source        = "../modules/frontend"
   ec2_count     = 1
@@ -19,10 +26,3 @@ module "front-end" {
   instance_type = "t2.micro"
 }
 
-
-module "back-end" {
-  source        = "../modules/backend"
-  ec2_count     = 1
-  ami_id        = "ami-0fb653ca2d3203ac1"
-  instance_type = "t2.micro"
-}

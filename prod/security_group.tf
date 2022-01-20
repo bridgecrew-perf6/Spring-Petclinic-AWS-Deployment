@@ -57,3 +57,15 @@ resource "aws_security_group" "port8080" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+resource "aws_security_group" "port80" {
+  name = "port80"
+
+  #Incoming traffic
+  ingress {
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
