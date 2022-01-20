@@ -34,6 +34,6 @@ spec:
     spec:
       containers:
       - name: backend
-        image: spring-petclinic-angular:latest
+        image: spring-petclinic-rest:latest
         ports:
         - containerPort: 9966
