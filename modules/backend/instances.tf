@@ -7,7 +7,7 @@ resource "aws_instance" "web" {
 
   connection {
         type        = "ssh"
-        host        = "ec2-${self.public_ip}.us-east-2.compute.amazonaws.com"
+        host        = "${self.public_ip}"
         user        = "ubuntu"
         private_key = "${file("~/.ssh/id_rsa")}"
     }
@@ -17,7 +17,7 @@ resource "aws_instance" "web" {
   }
 
   provisioner "file" {
-    source      = "~/deploy.sh"
+    source      = "../backend/deploy.sh"
     destination = "/tmp/deploy.sh"
   }  
   provisioner "remote-exec" {

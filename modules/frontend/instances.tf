@@ -11,20 +11,20 @@ resource "aws_instance" "web" {
 
   connection {
         type        = "ssh"
-        host        = "ec2-${self.public_ip}.us-east-2.compute.amazonaws.com"
+        host        = "${self.public_ip}"
         user        = "ubuntu"
         private_key = "${file("~/.ssh/id_rsa")}"
     }
 
 
   provisioner "file" {
-    source      = "~/deploy.sh"
-    destination = "/tmp/deploy.sh"
+    source      = "../frontend/deploy.sh"
+    destination = "~/tmp/deploy.sh"
   }  
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/deploy.sh",
-      "sudo /tmp/deploy.sh",
+      "chmod +x ~/tmp/deploy.sh",
+      "sudo ~/tmp/deploy.sh",
     ]
   }
 }
