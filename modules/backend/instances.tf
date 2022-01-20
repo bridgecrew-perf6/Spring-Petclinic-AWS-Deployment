@@ -22,8 +22,8 @@ resource "aws_instance" "web" {
   }  
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/deploy.sh",
-      "cd /tmp/",
+      "chmod +x ../tmp/deploy.sh",
+      "cd ../tmp/",
       "sh deploy.sh",
     ]
   }
