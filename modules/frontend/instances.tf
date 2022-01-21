@@ -2,7 +2,7 @@ resource "aws_instance" "web" {
   count         = "${var.ec2_count}"
   ami           = "${var.ami_id}"
   instance_type = "${var.instance_type}"
-  security_groups = ["allow_ssh", "port9966", "port80"]
+  security_groups = ["allow_ssh", "port8080", "port80"]
   key_name      = "frontend-key"
 
   tags = {
@@ -18,14 +18,15 @@ resource "aws_instance" "web" {
 
 
   provisioner "file" {
-    source      = "../modules/backend/deploy.sh "
-    destination = "/tmp/deploy.sh"
+    source      = "../modules/frontend/deploy.sh "
+      destination = "/tmp/deploy.sh"
   }  
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/deploy.sh",
+      "sudo chmod +x /tmp/deploy.sh",
       "cd /tmp/",
-      "sh deploy.sh",
+      "sed -i -e 's/\r$//' deploy.sh",
+      "./deploy.sh",
     ]
   }
 }
