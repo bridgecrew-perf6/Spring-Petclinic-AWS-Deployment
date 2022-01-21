@@ -17,13 +17,13 @@ resource "aws_instance" "web" {
   }
 
   provisioner "file" {
-    source      = "~Spring-Petclinic-AWS-Deployment/modules/backend/deploy.sh "
-    destination = "/tmp/deploy.sh"
+    source      = "../modules/backend/deploy.sh "
+    destination = "../modules/backend/tmp/deploy.sh"
   }  
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/deploy.sh",
-      "cd /tmp/",
+      "chmod +x ../modules/backend/tmp/deploy.sh",
+      "cd ../modules/backend/tmp/",
       "sh deploy.sh",
     ]
   }
